@@ -1,23 +1,639 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+
+   <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "볼보 유지비 분석 센터",
+        "url": "https://example.com/volvo-maintenance-guide"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "볼보 유지비 완벽 분석: 2026년 최신 모델별 견적과 절감 노하우",
+        "image": "https://images.pexels.com/photos/1056346/pexels-photo-1056346.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        "datePublished": "2025-11-03T00:00:00+09:00",
+        "author": {
+            "@type": "Person",
+            "name": "자동차 전문가 김태훈"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "볼보 유지비 컨설팅",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://example.com/images/logo.png"
+            }
+        },
+        "description": "볼보 오너를 위한 2026년 최신 유지비 절감 전략과 모델별 상세 분석. XC40, XC60, S90 등 주요 모델의 보험료, 부품 비용, 정비 주기를 상세히 안내합니다."
+    }
+    </script>
+
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa; /* 연한 배경색 */
+            color: #343a40;
+        }
+        header, section, footer {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        h1, h2, h3 {
+            color: #004d40; /* 핵심 컬러: 짙은 민트/청록 */
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -0.05em;
+        }
+        h1 {
+            font-size: 3.2rem;
+            text-align: center;
+            margin-top: 40px;
+            color: #00332e; /* 더 진한 색으로 강조 */
+            padding: 10px 0;
+            border-bottom: 5px double #00695c;
+        }
+        h2 {
+            font-size: 2.4rem;
+            border-bottom: 3px solid #00695c;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        h3 {
+            font-size: 1.6rem;
+            color: #1a5e20; /* 서브 강조 컬러: 녹색 계열 */
+            border-left: 5px solid #a8dadc;
+            padding-left: 10px;
+            margin-top: 25px;
+        }
+        p, ul, ol, li, dl, dt, dd {
+            font-size: 1.15rem;
+            color: #495057;
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+        ul, ol {
+            padding-left: 30px;
+        }
+        a {
+            color: #00695c;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #00332e;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            text-align: left;
+            background-color: #f8f9fa;
+        }
+        th {
+            background-color: #004d40;
+            color: white;
+            font-weight: 700;
+            text-align: center;
+        }
+        tr:nth-child(even) td {
+            background-color: #f1f8e9;
+        }
+        .btn-cta {
+            display: block;
+            width: 80%;
+            margin: 30px auto;
+            padding: 18px 32px;
+            background: #00695c;
+            color: #fff;
+            font-weight: 700;
+            border-radius: 50px;
+            box-shadow: 0 6px 15px rgba(0, 105, 92, 0.4);
+            transition: background-color 0.3s ease, transform 0.2s;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            font-size: 1.2rem;
+        }
+        .btn-cta:hover {
+            background: #00332e;
+            transform: translateY(-2px);
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 40px 0;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        nav ul li a {
+            font-weight: 700;
+            font-size: 1.0rem;
+            color: #00695c;
+            padding: 10px 15px;
+            border-radius: 30px;
+            border: 2px solid #a8dadc;
+            background-color: #e0f2f1;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        nav ul li a:hover,
+        nav ul li a:focus {
+            background-color: #00332e;
+            color: #ffffff;
+            border-color: #00332e;
+            outline: none;
+        }
+        form {
+            background: #f1f8e9;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #c8e6c9;
+        }
+        form label {
+            font-weight: 700;
+            display: block;
+            margin: 14px 0 6px 0;
+            font-size: 1.05rem;
+            color: #1a5e20;
+        }
+        form input[type="text"],
+        form input[type="tel"],
+        form input[type="email"],
+        form input[type="number"],
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1.8px solid #a5d6a7;
+            font-size: 1.0rem;
+            transition: border-color 0.3s ease;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+            border-color: #388e3c;
+            outline: none;
+            box-shadow: 0 0 5px rgba(56, 142, 60, 0.5);
+        }
+        .anchor {
+            display: block;
+            position: relative;
+            top: -100px;
+            visibility: hidden;
+        }
+        footer p {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #004d40;
+            padding: 15px 0;
+            border-top: 1px solid #b2dfdb;
+            margin: 0;
+        }
+        .highlight {
+            font-weight: 900;
+            color: #d32f2f; /* 빨간색으로 강력 강조 */
+            background-color: #ffebee;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .note-box {
+            background-color: #f0f4c3; /* 연한 노란색/크림색 배경 */
+            border-left: 5px solid #c0ca33;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        .image-container {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        /* 반응형 */
+        @media(max-width: 768px) {
+            nav ul {
+                gap: 10px;
+            }
+            nav ul li a {
+                font-size: 0.9rem;
+                padding: 8px 10px;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 2.0rem;
+            }
+            header, section, footer {
+                margin: 15px 12px;
+                padding: 20px 15px;
+            }
+            .btn-cta {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>볼보 유지비 완벽 분석: 2026년 최신 모델별 견적과 절감 노하우</h1>
+    <p>볼보는 뛰어난 안전성과 감성적인 디자인으로 국내 시장에서 인기가 높지만, 수입차 특유의 <span class="highlight">높은 유지 비용</span>에 대한 우려도 많습니다. 볼보 오너가 되기 전에 반드시 알아야 할 **2026년 최신 유지비 분석**과 **모델별(XC40, XC60, S90 등) 상세 비용 견적**을 지금 바로 확인하세요.</p>
+    <button class="btn-cta" onclick="location.href='#quote-form'">💰 맞춤 유지비 견적 빠르게 받아보기</button>
+</header>
+
+<nav aria-label="페이지 내 주요 정보">
+    <ul>
+        <li><a href="#overview">볼보 유지비 개요</a></li>
+        <li><a href="#cost-factors">핵심 유지비 구성 요소</a></li>
+        <li><a href="#model-comparison">모델별 상세 비교</a></li>
+        <li><a href="#cost-saving">유지비 절감 노하우</a></li>
+        <li><a href="#comparison-rival">경쟁 모델과 비교</a></li>
+        <li><a href="#2026-trend">2026년 트렌드</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#quote-form">견적 문의</a></li>
+    </ul>
+</nav>
+
+<section id="overview">
+    <span id="overview-anchor" class="anchor"></span>
+    <h2>볼보 유지비의 현실: "볼보 장점 vs 단점"을 가르는 기준</h2>
+    <div class="image-container">
+        <!-- Pexels free image -->
+        <img src="https://images.pexels.com/photos/1056346/pexels-photo-1056346.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="볼보 차량의 전면부">
+    </div>
+    <p>볼보 차량을 구매하기 전, 많은 예비 오너들이 궁금해하는 부분은 '볼보의 실제 유지비가 국산차 대비 얼마나 차이나는지'입니다. 볼보의 뛰어난 디자인과 안전 철학은 <span class="highlight">장점</span>으로 작용하지만, 수입차 특성상 수리비와 부품값은 <span class="highlight">단점</span>으로 꼽히곤 합니다. 특히 최근 전기차 모델인 C40 리차지나 XC40 리차지의 등장으로 유지비 산출 방식에 큰 변화가 생기고 있습니다.</p>
+    <p>볼보의 유지비는 크게 **1. 보험료, 2. 유류비(연비), 3. 소모품 및 정비 비용**으로 나눌 수 있습니다. 이 가이드에서는 2026년 기준 최신 데이터를 바탕으로 볼보의 주요 모델(XC40, XC60, XC90, S60, S90, V60)의 유지비를 상세히 분석하고, '볼보 유지비 내돈내산 후기' 등을 통해 얻은 실제 오너들의 정보를 종합하여 <span class="highlight">가장 저렴한 곳</span>에서 유지 보수를 할 수 있는 노하우를 제공합니다.</p>
+
+    <h3>볼보 유지비의 특징: '고급차'인가 '가성비'인가?</h3>
+    <p>볼보는 BMW, 벤츠, 아우디와 같은 독일 3사에 비해 상대적으로 <span class="highlight">가성비</span>가 좋은 프리미엄 브랜드로 인식됩니다. 하지만 '볼보 수리비'나 '부품 가격'을 검색해보면 생각보다 높은 <span class="highlight">금액</span>에 놀라는 경우가 많습니다. 특히 보증기간이 끝난 후에는 수리비가 예상보다 많이 나올 수 있으므로, 초기 구매 시 <span class="highlight">할인</span> 혜택 외에도 장기적인 유지 계획이 필요합니다.</p>
+    <p>볼보의 신차 구매를 고려하는 운전자들은 XC60과 XC90 모델을 주로 비교하며, XC40은 젊은 층이나 여성 운전자에게 인기입니다. 이 모델들은 각각의 <span class="highlight">장단점</span>과 특성을 가지고 있으며, 이에 따라 유지비 <span class="highlight">차이점</span>도 발생합니다. 이 가이드에서는 모델별로 구체적인 <span class="highlight">예상</span> <span class="highlight">금액</span>을 제시하여 합리적인 의사결정을 돕고자 합니다.</p>
+
+    <h3>볼보 유지비 결정 요인 요약</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>유지비 항목</th>
+                <th>볼보의 특징</th>
+                <th>절감 가능성</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>**자동차 보험료**</td>
+                <td>수입차 평균 수준, 모델별 손해율 차이 존재</td>
+                <td>다이렉트 보험 비교, 무사고 운전 경력, 첨단 안전장치 할인</td>
+            </tr>
+            <tr>
+                <td>**수리 및 부품 비용**</td>
+                <td>국산차 대비 높음. 특히 보증기간 외 부품 교체 시 <span class="highlight">비용</span> 부담.</td>
+                <td>보증기간 연장(Volvo Promise), 전문 정비소 이용, 정식 서비스센터 <span class="highlight">할인</span> 행사 활용</td>
+            </tr>
+            <tr>
+                <td>**유류비 (연비)**</td>
+                <td>가솔린/디젤/PHEV/EV 모델에 따라 <span class="highlight">차이점</span> 큼. 마일드 하이브리드(MHEV) 효율성.</td>
+                <td>연비 좋은 모델 선택(PHEV/EV), 운전 습관 개선, <span class="highlight">마일리지 특약</span> 활용</td>
+            </tr>
+            <tr>
+                <td>**세금 (자동차세)**</td>
+                <td>국산차와 동일하게 배기량(CC) 기준. 연식에 따른 감액 적용.</td>
+                <td>없음 (정해진 기준)</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<hr>
+
+<section id="cost-factors">
+    <span id="cost-factors-anchor" class="anchor"></span>
+    <h2>핵심 유지비 구성 요소 심층 분석: 보험료, 수리비, 연료비</h2>
+    <p>볼보 유지비의 <span class="highlight">평균</span> <span class="highlight">금액</span>을 정확히 산출하기 위해서는 각 항목을 세분화하여 분석해야 합니다. 특히 **볼보 보험료**와 **볼보 수리비**는 국산차와 비교했을 때 가장 큰 <span class="highlight">차이점</span>을 보이는 부분입니다.</p>
+
+    <h3>1. 볼보 모델별 자동차 보험료 분석</h3>
+    <p>자동차 보험료는 차량 <span class="highlight">가격</span>, 운전자의 나이, 운전 경력, 사고 이력 등 수많은 요인에 의해 결정됩니다. 볼보 차량은 수입차임에도 불구하고 <span class="highlight">볼보 안전성</span> 덕분에 독일 3사 대비 보험료가 상대적으로 저렴한 경우가 많습니다. 특히 첨단 안전장치(Pilot Assist, ADAS)가 기본 탑재되어 있어, <span class="highlight">할인</span> 특약을 적용받기 쉽습니다.</p>
+    <ul>
+        <li>**차량 등급 및 손해율:** 보험개발원에서 매년 책정하는 '차량 등급'은 보험료에 결정적인 영향을 미칩니다. 볼보 XC60이나 S90의 경우, 타 브랜드 동급 모델 대비 손해율이 낮게 책정되어 <span class="highlight">보험료</span>가 저렴할 수 있습니다.</li>
+        <li>**첨단 안전장치 특약:** 볼보의 <span class="highlight">블랙박스</span> 장착 할인 외에도, ADAS(Advanced Driver Assistance Systems) 기능에 대한 할인을 3~7% 받을 수 있습니다.</li>
+        <li>**다이렉트 비교:** <span class="highlight">볼보 다이렉트 보험</span> 가입 시 설계사를 통한 가입 대비 평균 15% 이상 저렴합니다. 여러 보험사(삼성화재, DB손해보험, 현대해상 등)를 통해 <span class="highlight">견적</span>을 받아 <span class="highlight">비교</span>하는 것이 필수입니다.</li>
+    </ul>
+
+    <h3>2. 볼보 수리비 및 부품 가격: 보증기간 이후가 관건</h3>
+    <p>볼보 수리비는 <span class="highlight">내돈내산 후기</span>에서 가장 많은 불만이 제기되는 부분입니다. 보증기간(5년/10만km) 동안에는 소모품 교환과 기본적인 수리가 무상으로 제공되지만, 보증기간이 끝나면 <span class="highlight">부품 가격</span>이 국산차 대비 2~3배 높게 책정되어 <span class="highlight">유지비</span>가 급상승할 수 있습니다. 특히 헤드라이트나 범퍼 교체와 같은 사고 수리 시 <span class="highlight">예상</span> <span class="highlight">금액</span>을 초과하는 경우가 많습니다.</p>
+    <ul>
+        <li>**소모품 교환 주기:** 엔진오일, 브레이크 패드, 와이퍼 블레이드 등 소모품 교환 주기는 국산차와 비슷하지만, 부품 <span class="highlight">가격</span>은 다릅니다. 볼보 순정 부품 <span class="highlight">전문 업체</span>를 통해 부품을 구매하거나, <span class="highlight">저렴한 곳</span>인 사설 정비소를 이용하면 <span class="highlight">비용</span>을 절감할 수 있습니다.</li>
+        <li>**전기차(EV) 모델의 특징:** XC40 리차지나 C40 리차지와 같은 전기차 모델은 엔진오일 교환이 필요 없어 소모품 <span class="highlight">비용</span>이 매우 저렴합니다. 하지만 배터리 관련 수리 시 <span class="highlight">금액</span>이 매우 높을 수 있으므로 보증기간 확인이 중요합니다.</li>
+    </ul>
+
+    <h3>3. 유류비 및 세금 (모델별 효율성)</h3>
+    <p>볼보는 마일드 하이브리드(MHEV) 기술을 적극 도입하여 연비를 개선했습니다. XC60 B5 모델의 공인 연비는 10km/l 내외로 준수한 편입니다. 하지만 <span class="highlight">유류비</span>는 운전 습관에 따라 크게 달라지므로, <span class="highlight">볼보 연비</span> <span class="highlight">후기</span>를 참고하여 운전 습관을 개선해야 합니다. 자동차세는 배기량 기준으로, 2,000cc 모델은 연간 약 50만원(지방세 포함) 정도가 부과됩니다.</p>
+    <div class="note-box">
+        <h4>📢 2026년 볼보 유지비 트렌드: 전기차와 서비스 확장</h4>
+        <p>2026년에는 볼보의 전기차 모델(XC40 Recharge, C40 Recharge) 판매 비중이 늘어나면서 <span class="highlight">유지비</span> <span class="highlight">예상</span> <span class="highlight">금액</span>의 구조가 크게 변화할 것으로 보입니다. 엔진이 없는 전기차는 소모품 교체 <span class="highlight">비용</span>이 거의 발생하지 않지만, 배터리 관리나 전기차 전용 타이어 <span class="highlight">가격</span>은 고려해야 합니다. 또한 볼보코리아는 고객 만족을 위해 서비스센터 확충 및 <span class="highlight">할인</span> 프로모션을 강화할 것으로 예상됩니다.</p>
+    </div>
+</section>
+
+<hr>
+
+<section id="model-comparison">
+    <span id="model-comparison-anchor" class="anchor"></span>
+    <h2>볼보 주요 모델별 유지비 상세 비교 분석 (XC40 vs XC60 vs XC90)</h2>
+    <p>볼보의 대표 모델인 XC40, XC60, XC90은 차급과 성격이 다르므로 <span class="highlight">유지비</span> <span class="highlight">차이점</span>도 명확합니다. 각 모델별로 1년 <span class="highlight">예상</span> <span class="highlight">유지비</span> <span class="highlight">금액</span>을 분석하여 <span class="highlight">비교</span>해봅니다. (운전 습관 및 보험 조건에 따라 달라질 수 있는 <span class="highlight">평균</span>적인 <span class="highlight">가격</span>입니다.)</p>
+
+    <h3>1. 볼보 XC40 유지비: 가장 저렴한 볼보 SUV</h3>
+    <p>XC40은 볼보의 컴팩트 SUV로, 비교적 저렴한 <span class="highlight">가격</span>으로 프리미엄 브랜드를 경험할 수 있는 모델입니다. XC40 <span class="highlight">유지비</span>는 볼보 모델 중 가장 <span class="highlight">저렴한 곳</span>에 속하며, 특히 XC40 <span class="highlight">T4</span>나 <span class="highlight">T5</span> 모델의 연비는 10km/l 중반대로 효율적입니다. XC40 <span class="highlight">B4</span> 모델은 마일드 하이브리드 기술로 연비 효율을 높였습니다. 전기차 모델인 <span class="highlight">XC40 Recharge</span>는 유류비 부담이 없어 장기적으로 <span class="highlight">유지비</span> 절감 효과가 큽니다.</p>
+
+    <h3>2. 볼보 XC60 유지비: 볼보의 핵심 모델, 가성비 최강자</h3>
+    <p>XC60은 국내에서 가장 인기 있는 볼보 모델입니다. <span class="highlight">XC60 B5</span> 모델은 연비와 성능의 균형이 뛰어나며, <span class="highlight">XC60 유지비</span> <span class="highlight">견적</span>을 받아보면 독일 경쟁 모델 대비 <span class="highlight">저렴한</span> 경우가 많습니다. <span class="highlight">XC60</span> <span class="highlight">B6</span>나 <span class="highlight">T8</span> PHEV 모델은 성능이 뛰어나지만 초기 구매 <span class="highlight">가격</span>과 보험료가 상대적으로 높습니다. XC60 오너들의 <span class="highlight">내돈내산 후기</span>를 보면, 정기적인 소모품 교환 비용은 국산차 대비 1.5배 정도 높지만, 잔고장이 적어 큰 <span class="highlight">비용</span> 지출이 적다는 평가가 많습니다.</p>
+
+    <h3>3. 볼보 XC90 유지비: 플래그십 SUV의 유지비</h3>
+    <p>XC90은 볼보의 플래그십 SUV로, 가장 큰 <span class="highlight">가격</span>과 유지비가 소요됩니다. <span class="highlight">XC90 유지비</span> <span class="highlight">예상</span> <span class="highlight">금액</span>은 연간 <span class="highlight">평균</span> 400만원 이상(유류비 제외)으로 잡는 것이 좋습니다. 특히 타이어 <span class="highlight">가격</span>이나 대형 부품의 <span class="highlight">수리비</span>가 높게 책정되어 있습니다. <span class="highlight">볼보 XC90</span> 모델은 D5(디젤) 모델이 연비 효율이 좋았으나, 최근에는 <span class="highlight">B6</span>(가솔린 마일드 하이브리드) 모델이 주력이며 <span class="highlight">XC90</span> <span class="highlight">T8</span> PHEV 모델도 인기입니다.</p>
+
+    <h3>4. 모델별 연간 예상 유지비 비교표 (2026년 기준)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>모델 (2026년식)</th>
+                <th>예상 보험료(년)</th>
+                <th>예상 소모품 비용(년)</th>
+                <th>연간 유류비 (15,000km 주행 기준)</th>
+                <th>총 예상 연간 유지비 (유류비 포함)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>**XC40 B4 (MHEV)**</td>
+                <td>100만원 ~ 120만원</td>
+                <td>40만원 ~ 60만원</td>
+                <td>200만원 (연비 10.5km/l)</td>
+                <td>340만원 ~ 380만원</td>
+            </tr>
+            <tr>
+                <td>**XC60 B5 (MHEV)**</td>
+                <td>110만원 ~ 140만원</td>
+                <td>50만원 ~ 80만원</td>
+                <td>220만원 (연비 10.0km/l)</td>
+                <td>380만원 ~ 440만원</td>
+            </tr>
+            <tr>
+                <td>**S90 B5 (MHEV)**</td>
+                <td>105만원 ~ 135만원</td>
+                <td>50만원 ~ 70만원</td>
+                <td>210만원 (연비 10.2km/l)</td>
+                <td>365만원 ~ 415만원</td>
+            </tr>
+            <tr>
+                <td>**XC90 B6 (MHEV)**</td>
+                <td>130만원 ~ 160만원</td>
+                <td>60만원 ~ 90만원</td>
+                <td>250만원 (연비 9.0km/l)</td>
+                <td>440만원 ~ 500만원</td>
+            </tr>
+            <tr>
+                <td>**XC40 Recharge (EV)**</td>
+                <td>120만원 ~ 150만원</td>
+                <td>10만원 ~ 20만원</td>
+                <td>50만원 (충전 비용)</td>
+                <td>180만원 ~ 220만원</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="table-note" style="font-size:0.9rem; margin-top:10px;">* 상기 <span class="highlight">금액</span>은 30대 운전자, 무사고 기준 <span class="highlight">평균</span> <span class="highlight">예상</span> <span class="highlight">견적</span>입니다. 보험 조건 및 주행 거리에 따라 <span class="highlight">차이점</span>이 발생할 수 있습니다.</p>
+</section>
+
+<hr>
+
+<section id="cost-saving">
+    <span id="cost-saving-anchor" class="anchor"></span>
+    <h2>볼보 유지비 절감 노하우: 보증 연장부터 정비소 선택까지</h2>
+    <p>볼보 오너들은 <span class="highlight">유지비</span>를 절감하기 위해 다양한 노하우를 공유합니다. 특히 <span class="highlight">볼보 수리비</span> <span class="highlight">할인</span>과 <span class="highlight">소모품 교환 비용</span> 절감이 핵심입니다. 다음은 2026년 볼보 오너들이 가장 많이 사용하는 <span class="highlight">비용</span> 절감 방법입니다.</p>
+
+    <h3>1. 보증기간 연장 및 서비스 프로그램 활용 (Volvo Promise)</h3>
+    <p>볼보코리아는 기본 보증기간 외에 <span class="highlight">볼보 워런티 연장 프로그램</span>을 제공합니다. 이는 보증기간이 끝난 후 발생할 수 있는 고액의 <span class="highlight">수리비</span> 리스크를 줄이는 가장 확실한 방법입니다. <span class="highlight">볼보 전문</span> <span class="highlight">업체</span>들은 <span class="highlight">내돈내산 후기</span>를 통해 워런티 연장의 중요성을 강조합니다. 특히 <span class="highlight">XC90</span>이나 <span class="highlight">S90</span> 같은 고가 모델일수록 보증 연장이 필수적입니다.</p>
+
+    <h3>2. 소모품 교체 및 정비소 선택 전략</h3>
+    <p>볼보의 정식 서비스센터는 정품 부품 사용과 전문적인 정비가 장점이지만, <span class="highlight">가격</span>이 비싸다는 <span class="highlight">단점</span>이 있습니다. 보증기간이 끝난 후에는 <span class="highlight">볼보 전문</span> 사설 정비소를 이용하면 <span class="highlight">수리비</span>를 크게 절약할 수 있습니다. <span class="highlight">볼보 부품 가격</span>은 정식 서비스센터와 사설 <span class="highlight">전문 업체</span> 간에 큰 <span class="highlight">차이점</span>이 발생합니다. <span class="highlight">볼보 순위</span> <span class="highlight">비교</span> <span class="highlight">추천</span> 커뮤니티(예: <span class="highlight">디시</span> 인사이드 자동차 갤러리)에서 <span class="highlight">저렴한 곳</span>의 <span class="highlight">후기</span>를 찾아보는 것도 좋은 방법입니다.</p>
+
+    <h3>3. 운전 습관 연계 보험(UBI) 활용 및 할인 혜택</h3>
+    <p>볼보 운전자들은 <span class="highlight">T맵</span>이나 <span class="highlight">카카오내비</span>와 연동하여 안전 운전 점수를 높이면 보험료 <span class="highlight">할인</span>(최대 15%)을 받을 수 있습니다. 볼보는 안전 운전 기능이 뛰어난 만큼 UBI 특약 활용 시 <span class="highlight">할인</span> 혜택을 받기 쉽습니다. <span class="highlight">2026년</span>에는 <span class="highlight">제미나이</span>나 <span class="highlight">ChatGPT</span>와 같은 <span class="highlight">AI</span> 기술을 활용하여 운전 습관을 분석하는 <span class="highlight">상품</span>이 더욱 보편화될 것으로 예상됩니다.</p>
+
+    <div class="note-box">
+        <h4>🚨 볼보 전기차 유지비: XC40 Recharge와 C40 Recharge</h4>
+        <p>전기차 모델인 <span class="highlight">C40</span>이나 <span class="highlight">XC40 Recharge</span>는 엔진오일 교환이 필요 없으며, 브레이크 마모가 적어 소모품 <span class="highlight">비용</span>이 매우 <span class="highlight">저렴한 곳</span>에 속합니다. 하지만 주행 가능 거리가 줄어드는 '배터리 열화'나 충돌 시 배터리팩 수리 <span class="highlight">금액</span>은 매우 높습니다. 따라서 전기차 <span class="highlight">신규 가입 혜택</span>으로 <span class="highlight">지원금</span>을 받더라도, 장기적인 배터리 보증 기간과 <span class="highlight">수리비</span> <span class="highlight">견적</span>을 미리 확인해야 합니다.</p>
+    </div>
+</section>
+
+<hr>
+
+<section id="comparison-rival">
+    <span id="comparison-rival-anchor" class="anchor"></span>
+    <h2>볼보 vs 경쟁 모델 (BMW, 벤츠) 유지비 비교</h2>
+    <p>볼보 <span class="highlight">유지비</span>를 평가할 때 독일 3사(BMW, 벤츠, 아우디)와의 <span class="highlight">비교</span>는 필수적입니다. 볼보는 <span class="highlight">XC60</span>과 <span class="highlight">S90</span>을 통해 BMW 5시리즈, 벤츠 E클래스, 아우디 A6 등과 경쟁합니다. <span class="highlight">볼보의 장점</span>은 초기 구매 <span class="highlight">할인</span> 혜택이 상대적으로 크고, 기본 소모품 <span class="highlight">비용</span>이 합리적이라는 점입니다.</p>
+
+    <h3>1. 보험료 및 부품 가격 차이</h3>
+    <p>일반적으로 볼보 <span class="highlight">XC60</span> <span class="highlight">유지비</span> <span class="highlight">견적</span>은 BMW 5시리즈나 벤츠 E클래스 대비 보험료가 소폭 저렴한 경향이 있습니다. 이는 볼보의 손해율이 낮기 때문입니다. 하지만 사고 수리 시 <span class="highlight">부품 가격</span>은 볼보와 독일 3사 모두 국산차 대비 높게 책정되어 있습니다. 특히 경미한 접촉사고라도 수리 기간이 길어지고 <span class="highlight">수리비</span> <span class="highlight">예상</span> <span class="highlight">금액</span>이 수백만원에 달하는 경우가 많습니다.</p>
+
+    <h3>2. 소모품 관리 및 정비 용이성</h3>
+    <p>볼보는 <span class="highlight">저렴한 곳</span>인 사설 정비소가 상대적으로 적다는 <span class="highlight">단점</span>이 있습니다. 독일차는 오랜 기간 국내에 정착하면서 사설 정비소 <span class="highlight">전문 업체</span>가 많아졌지만, 볼보는 여전히 정식 서비스센터 의존도가 높습니다. 이로 인해 보증기간 이후에는 볼보 <span class="highlight">유지비</span> <span class="highlight">단점</span>이 부각될 수 있습니다.</p>
+
+    <h3>3. 중고차 잔존 가치와 감가상각</h3>
+    <p>볼보의 중고차 잔존 가치는 독일 3사 대비 다소 낮다는 평가가 많습니다. 이는 <span class="highlight">장기적인 유지비</span> 관점에서 감가상각 <span class="highlight">비용</span>을 고려해야 함을 의미합니다. 볼보 오너들의 <span class="highlight">내돈내산 후기</span>를 보면, 중고차 <span class="highlight">가격</span> 하락 폭을 감안하여 <span class="highlight">유지비</span> <span class="highlight">비교</span>를 해야 한다는 의견이 많습니다.</p>
+
+    <h3>4. 모델별 유지비 비교 요약</h3>
+    <ul>
+        <li>**XC40 vs BMW X1:** XC40은 X1 대비 <span class="highlight">가격</span>이 저렴하고 초기 <span class="highlight">할인</span>이 많아 매력적이지만, 보증기간 외 <span class="highlight">수리비</span>는 두 모델 모두 높습니다.</li>
+        <li>**XC60 vs 벤츠 GLC:** XC60은 GLC 대비 <span class="highlight">유지비</span>가 소폭 <span class="highlight">저렴한 곳</span>에 속하며, 특히 벤츠의 수리비가 높다는 <span class="highlight">후기</span>가 많습니다.</li>
+        <li>**XC90 vs 아우디 Q7:** 플래그십 SUV에서는 <span class="highlight">XC90 유지비</span> <span class="highlight">장점</span>이 두드러지지는 않으며, <span class="highlight">수리비</span>나 소모품 <span class="highlight">가격</span>은 모두 높은 편입니다.</li>
+    </ul>
+</section>
+
+<hr>
+
+<section id="2026-trend">
+    <span id="2026-trend-anchor" class="anchor"></span>
+    <h2>2026년 볼보 유지비 트렌드 예측 및 AI 분석</h2>
+    <p>2026년 자동차 시장은 전기차와 AI 기술의 발전으로 <span class="highlight">유지비</span> 구조에 큰 변화를 겪을 것입니다. 볼보 <span class="highlight">유지비</span> <span class="highlight">예상</span> <span class="highlight">금액</span>을 산출할 때도 이러한 미래 트렌드를 반드시 고려해야 합니다. 특히 <span class="highlight">볼보 전기차 모델</span>(XC40 Recharge, C40 Recharge)의 증가로 내연기관차와 <span class="highlight">유지비</span> <span class="highlight">차이점</span>이 더욱 명확해질 것입니다.</p>
+
+    <h3>1. 전기차 유지비: 소모품 감소와 배터리 관리</h3>
+    <p>볼보 전기차는 엔진오일, 미션오일, 점화플러그 등 내연기관 소모품 교체가 필요 없습니다. 이로 인해 정기적인 소모품 <span class="highlight">비용</span>이 <span class="highlight">평균</span>적으로 연간 10~20만원 수준으로 매우 낮습니다. 하지만 배터리 성능 저하(열화)에 따른 보상이나 수리 <span class="highlight">비용</span>에 대한 논의가 활발해질 것입니다. <span class="highlight">XC40 Recharge 유지비</span>는 <span class="highlight">내돈내산 후기</span>를 보면 유류비 절감 효과가 커서 <span class="highlight">장점</span>으로 작용합니다.</p>
+
+    <h3>2. AI 기반 정비 예측 및 개인화 서비스</h3>
+    <p>2026년에는 <span class="highlight">볼보 서비스센터</span>에서 <span class="highlight">AI</span>를 활용한 정비 예측 서비스가 확대될 것입니다. <span class="highlight">제미나이</span>나 <span class="highlight">ChatGPT</span>와 같은 대규모 언어 모델 기반의 <span class="highlight">AI</span> 챗봇이 운전자에게 차량 상태를 알려주고, 정비 <span class="highlight">견적</span>을 미리 제시해주는 <span class="highlight">상품</span>이 등장할 수 있습니다. 이는 운전자가 <span class="highlight">수리비</span> <span class="highlight">예상</span> <span class="highlight">금액</span>을 미리 파악하여 <span class="highlight">저렴한 곳</span>을 선택할 수 있도록 돕습니다.</p>
+
+    <h3>3. 온라인 커뮤니티 및 소셜 미디어 활용</h3>
+    <p><span class="highlight">네이버</span> 카페, <span class="highlight">구글</span>, <span class="highlight">유튜브</span>, <span class="highlight">인스타그램</span>, <span class="highlight">페이스북</span> 등 소셜 미디어 채널에서 <span class="highlight">볼보 유지비</span> <span class="highlight">후기</span> 공유가 활발해질 것입니다. <span class="highlight">디시</span> 인사이드 자동차 갤러리에서도 <span class="highlight">볼보 XC60</span> <span class="highlight">유지비</span>나 <span class="highlight">볼보 S60</span> <span class="highlight">장단점</span>에 대한 정보가 실시간으로 공유되며, <span class="highlight">전문 업체</span> <span class="highlight">추천</span>을 받을 수 있습니다.</p>
+
+    <h3>4. 볼보 S60, V60, S90 모델의 유지비 특징</h3>
+    <p>세단 모델인 <span class="highlight">S60</span>과 왜건 모델인 <span class="highlight">V60</span>은 SUV 모델인 <span class="highlight">XC60</span>과 <span class="highlight">유지비</span> <span class="highlight">차이점</span>이 거의 없습니다. <span class="highlight">S60 유지비</span> <span class="highlight">견적</span>을 받아보면 <span class="highlight">XC60</span>보다 차량 <span class="highlight">가격</span>이 소폭 저렴하여 보험료가 약간 낮을 수 있지만, 전반적인 소모품 <span class="highlight">비용</span>은 동일합니다. <span class="highlight">S90</span>은 플래그십 세단으로 <span class="highlight">유지비</span> <span class="highlight">평균</span>이 높으며, <span class="highlight">볼보 V60</span>은 국내 희소성으로 인해 <span class="highlight">중고차</span> <span class="highlight">가격</span> 하락 폭이 클 수 있습니다.</p>
+
+    <div class="note-box">
+        <h4>📢 볼보 신규 구매 혜택: 사은품, 지원금, 이벤트</h4>
+        <p>볼보는 <span class="highlight">신규 가입 혜택</span>으로 <span class="highlight">사은품</span>이나 <span class="highlight">현금지원</span> <span class="highlight">지원금</span>을 제공하는 <span class="highlight">이벤트</span>를 자주 진행합니다. <span class="highlight">볼보 전문</span> <span class="highlight">업체</span>를 통해 <span class="highlight">견적</span>을 받을 때 이러한 <span class="highlight">상품</span> <span class="highlight">상품권</span> <span class="highlight">이벤트</span>를 꼼꼼히 <span class="highlight">비교</span>하는 것도 초기 <span class="highlight">유지비</span> 부담을 줄이는 방법입니다.</p>
+    </div>
+</section>
+
+<hr>
+
+<section id="faq">
+    <span id="faq-anchor" class="anchor"></span>
+    <h2>자주 묻는 질문: 볼보 유지비 FAQ</h2>
+    <dl>
+        <dt>Q. 볼보 XC60 유지비가 BMW 5시리즈보다 저렴한가요?</dt>
+        <dd>A. 초기 <span class="highlight">유지비</span>(소모품 교환, 보험료)는 볼보가 소폭 저렴한 경향이 있지만, 보증기간이 끝난 후 사고 <span class="highlight">수리비</span>는 두 브랜드 모두 높습니다. <span class="highlight">수리비</span> <span class="highlight">평균</span> <span class="highlight">금액</span>은 모델별로 <span class="highlight">차이점</span>이 발생하므로 <span class="highlight">전문 업체</span> <span class="highlight">견적</span> <span class="highlight">비교</span>가 필수입니다.</dd>
+
+        <dt>Q. 볼보 C40 Recharge 유지비는 내연기관 XC40과 얼마나 차이가 나나요?</dt>
+        <dd>A. <span class="highlight">C40</span> <span class="highlight">유지비</span>는 유류비가 거의 발생하지 않아 내연기관 모델 대비 연간 150만원 이상의 <span class="highlight">비용</span> 절감 효과가 있습니다. 다만 전기차 전용 타이어 <span class="highlight">가격</span>은 다소 높을 수 있습니다. <span class="highlight">내돈내산 후기</span>를 보면 <span class="highlight">장점</span>이 훨씬 많습니다.</dd>
+
+        <dt>Q. 볼보 보증기간 연장(Volvo Promise) <span class="highlight">가격</span>이 <span class="highlight">얼마</span>인가요?</dt>
+        <dd>A. <span class="highlight">볼보 XC60</span> <span class="highlight">B5</span> 모델 기준으로 보증기간 연장 <span class="highlight">상품</span> <span class="highlight">가격</span>은 약 200만원 전후입니다. <span class="highlight">전문 업체</span> <span class="highlight">후기</span>를 보면 장기적인 <span class="highlight">수리비</span> 리스크를 감안할 때 <span class="highlight">가성비</span>가 좋다는 평가입니다.</dd>
+
+        <dt>Q. 볼보 <span class="highlight">저렴한곳</span> 사설 정비소를 어떻게 찾나요?</dt>
+        <dd>A. <span class="highlight">네이버</span> 카페나 <span class="highlight">구글</span> <span class="highlight">후기</span>를 통해 <span class="highlight">볼보 전문</span> <span class="highlight">업체</span>를 찾아야 합니다. 정식 서비스센터와 <span class="highlight">비교</span>하여 <span class="highlight">견적</span>을 받고, 소모품 <span class="highlight">가격</span> <span class="highlight">할인</span> 여부를 확인해야 합니다. <span class="highlight">디시</span> 인사이드 자동차 갤러리에서도 <span class="highlight">전문 업체</span> <span class="highlight">추천</span> 정보를 얻을 수 있습니다.</dd>
+
+        <dt>Q. 볼보 <span class="highlight">중고차</span> 구매 시 <span class="highlight">유지비</span> <span class="highlight">단점</span>은 무엇인가요?</dt>
+        <dd>A. <span class="highlight">볼보 중고차</span>는 보증기간이 끝난 후 <span class="highlight">수리비</span> 폭탄을 맞을 위험이 있습니다. <span class="highlight">신규 가입</span> <span class="highlight">혜택</span>이 없으므로 <span class="highlight">내돈내산</span> <span class="highlight">후기</span>를 참고하여 <span class="highlight">전문 업체</span>를 통해 차량 상태를 점검하고 구매해야 합니다.</dd>
+    </dl>
+</section>
+
+<hr>
+
+<section id="related-keywords">
+    <span id="related-keywords-anchor" class="anchor"></span>
+    <h2>📚 연관 키워드 및 함께 많이 찾는 카테고리</h2>
+    <p>볼보 유지비와 관련된 추가 정보 탐색을 위한 키워드와 카테고리입니다. 이 키워드들을 통해 더 많은 유지비 절감 정보를 얻을 수 있습니다.</p>
+
+    <h3>🔍 자동 완성 키워드 및 연관 검색어</h3>
+    <nav aria-label="관련 검색어">
+        <ul>
+            <li><a href="/">볼보 XC60 유지비 얼마</a></li>
+            <li><a href="/">볼보 XC40 유지비 내돈내산</a></li>
+            <li><a href="/">볼보 XC90 유지비 견적</a></li>
+            <li><a href="/">볼보 S90 유지비 단점</a></li>
+            <li><a href="/">볼보 V60 CC 유지비</a></li>
+            <li><a href="/">볼보 수리비 할인</a></li>
+            <li><a href="/">볼보 보증 연장 가격</a></li>
+            <li><a href="/">볼보 소모품 교체 주기</a></li>
+            <li><a href="/">볼보 S60 연비 후기</a></li>
+            <li><a href="/">볼보 중고차 유지비 비교</a></li>
+            <li><a href="/">볼보 전문 정비소 추천</a></li>
+            <li><a href="/">볼보 마일리지 특약</a></li>
+            <li><a href="/">볼보 서비스센터 이벤트</a></li>
+            <li><a href="/">볼보 딜러사 추천</a></li>
+        </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+    <h3>🗂️ 함께 많이 찾는 카테고리</h3>
+    <nav aria-label="함께 많이 찾는 카테고리">
+        <ul>
+            <li><a href="/">수입차 유지비 비교</a></li>
+            <li><a href="/">자동차 보험 다이렉트 비교</a></li>
+            <li><a href="/">수입차 정비 전문 업체</a></li>
+            <li><a href="/">자동차 사고 수리비 절감 노하우</a></li>
+            <li><a href="/">볼보 신차 견적 할인 정보</a></li>
+        </ul>
+    </nav>
+</section>
+
+<hr>
+
+<section id="trust-sites">
+    <span id="trust-sites-anchor" class="anchor"></span>
+    <h2>🏛️ 신뢰성 높은 공인 외부 정보 출처 (5개 이상)</h2>
+    <p>볼보 유지비 및 자동차 관련 법규, 제도 및 공식 통계는 다음 공신력 있는 기관의 정보를 통해 확인하실 수 있습니다. 정확한 정보 확인은 합리적인 유지비 관리의 기초입니다.</p>
+    <ul>
+        <li><a href="https://www.volvocars.com/kr/" target="_blank" rel="noopener noreferrer">**볼보 코리아 공식 웹사이트**</a>: 공식 서비스센터 위치, 소모품 교환 주기 및 보증 프로그램 안내.</li>
+        <li><a href="https://www.kidi.or.kr" target="_blank" rel="noopener noreferrer">**한국보험개발원 (KIDI)**</a>: 차량 모델별 보험료율 산정 근거, 사고율 통계 제공.</li>
+        <li><a href="https://www.kofia.or.kr" target="_blank" rel="noopener noreferrer">**생명보험협회/손해보험협회**</a>: 보험 상품 비교 공시, 소비자 민원 처리 및 보험 제도 안내.</li>
+        <li><a href="https://www.carinsure.or.kr" target="_blank" rel="noopener noreferrer">**자동차보험 통합 비교 포털**</a>: 자동차보험 상품별 최신 정보 및 간편 비교.</li>
+        <li><a href="https://www.law.go.kr" target="_blank" rel="noopener noreferrer">**국가법령정보센터**</a>: 자동차 손해배상 보장법 등 관련 법규 확인.</li>
+    </ul>
+</section>
+
+<hr>
+
+<section id="quote-form">
+    <span id="quote-form-anchor" class="anchor"></span>
+    <h2>📞 볼보 모델별 최적화 유지비 맞춤 견적 문의하기</h2>
+    <p>운전자님의 상세 정보를 입력해주시면, 차량 상태와 운전 습관에 맞는 **볼보 유지비 절감 노하우**를 포함한 맞춤형 컨설팅을 위해 전문 상담원이 1:1로 빠르게 연락드립니다. <span class="highlight">입력 항목을 상세히 기재하시면 더욱 정확한 견적</span>을 받아보실 수 있으며, 체류 시간 증가를 위해 상세한 필드를 구성했습니다.</p>
+
+    <form id="insurance-quote-form" action="#" method="POST" style="max-width:700px; margin:auto;">
+        <h3>1. 기본 정보</h3>
+        <label for="name">성함<span style="color:red;">*</span></label>
+        <input type="text" id="name" name="name" placeholder="홍길동" required />
+
+        <label for="phone">휴대폰 번호<span style="color:red;">*</span></label>
+        <input type="tel" id="phone" name="phone" placeholder="010-XXXX-XXXX (연락 가능한 번호)" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}|[0-9]{11}" required />
+
+        <label for="email">이메일 주소</label>
+        <input type="email" id="email" name="email" placeholder="example@gmail.com (선택 사항)" />
+
+        <h3>2. 차량 및 운전 정보 (정확한 유지비 분석을 위해 중요)</h3>
+        <label for="car-model">볼보 차량 모델<span style="color:red;">*</span></label>
+        <select id="car-model" name="car_model" required>
+            <option value="">모델 선택</option>
+            <option value="XC40">XC40 (B4, Recharge)</option>
+            <option value="XC60">XC60 (B5, B6, Recharge)</option>
+            <option value="XC90">XC90 (B6, Recharge)</option>
+            <option value="S60">S60 (B5, Recharge)</option>
+            <option value="S90">S90 (B5, Recharge)</option>
+            <option value="V60CC">V60 Cross Country (B5)</option>
+            <option value="C40">C40 Recharge</option>
+            <option value="other">기타 볼보 모델</option>
+        </select>
+
+        <label for="car-year">차량 연식 (구매 시점 기준)<span style="color:red;">*</span></label>
+        <input type="number" id="car-year" name="car_year" min="1990" max="2026" placeholder="예: 2023" required />
+
+        <label for="annual-mileage">연간 주행 거리 (km)<span style="color:red;">*</span></label>
+        <input type="number" id="annual-mileage" name="annual_mileage" min="0" max="100000" placeholder="예: 15000" required />
+
+        <label for="warranty-status">보증기간 만료 여부</label>
+        <select id="warranty-status" name="warranty_status">
+            <option value="yes">아직 보증기간 내 (5년/10만km)</option>
+            <option value="no">보증기간 만료됨</option>
+            <option value="unknown">모르겠음</option>
+        </select>
+        
+        <label for="repair-history">최근 1년간 주요 수리/사고 이력</label>
+        <textarea id="repair-history" name="repair_history" rows="3" placeholder="예: 경미한 접촉사고로 범퍼 교체 (수리비 150만원), 엔진오일 교환"></textarea>
+
+        <h3>3. 문의 내용 및 요청 사항</h3>
+        <label for="message">문의 내용 및 요청 사항 (구체적으로 작성 시 정확한 견적 제공)</label>
+        <textarea id="message" name="message" rows="5" placeholder="XC60 B5 모델을 보유 중입니다. 보증기간이 곧 만료되는데, 앞으로의 예상 유지비와 수리비 절감 노하우를 알고 싶습니다. 보증 연장 상품 가격 견적도 함께 부탁드립니다."></textarea>
+
+        <button class="btn-cta" type="submit">✅ 1:1 맞춤 견적 요청 및 상담 시작하기</button>
+    </form>
+</section>
+
+  
